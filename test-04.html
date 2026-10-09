@@ -6,7 +6,7 @@
 <title>CICADA 6845 // test 04</title>
 <!--
   CICADA 6845 — TEST 04 (FÁZA 2, variant A).
-  cesta A (pravá): Vigenère Autokey → "Kto hlada odpovede, najde len dalsie OTAZKY." → otazky; fragmenty 4.1–4.4.
+  cesta A (pravá): Vigenère Autokey → "Kto hlada odpovede, najde len dalsie OTAZKY." → otazky; fragmenty 4.1–4.3.
   cesta B (pasca): Vigenère Autokey → "Co sa zda pravdou, moze byt len dverami do TMY." → tmy; 2-znakový mini kúsok.
   Šifrovanie overené na cryptii.com 7.10.2026 (kľúč cryptiypts, Autokey, Ignore case, Include).
   Odpoveď = POSLEDNÉ slovo dekódovaného textu (cryptii pri Ignore case stráca CAPS).
@@ -87,7 +87,7 @@ const CISLO_FAZY = 4;
 const REALNA = "A";
 const KONTROLA_A = "e1ad789ea508cedec0af61f6d2136ea621bf109f94a1b8a71fe33a929a8b492c";
 const KONTROLA_B = "a403bd6be2eaddad91ab70aabc931a99338301a81a5d18806726cd3e35777cc9";
-const NEXT_URL = "";  // doplniť, až bude TEST 05.
+const NEXT_URL = "https://github.com/PTS-comporatione-v4/Blackhat-v0.2";  // doplniť, až bude TEST 05.
 
 function norm(s){
   return s.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
@@ -115,7 +115,7 @@ async function over(cesta){
   }
   if(cesta === REALNA){
     const frags = [];
-    for(let j=1;j<=4;j++) frags.push((await sha256hex(n + "|" + j)).slice(0,8));
+    for(let j=1;j<=3;j++) frags.push((await sha256hex(n + "|" + j)).slice(0,8));
     let html = "Fragmenty testu 04:<br>";
     frags.forEach((f,j)=>{
       html += '<span class="fragment">4.' + (j+1) + ": " + f + "</span><br>";
