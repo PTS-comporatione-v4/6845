@@ -4,14 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CICADA 6845 // test 04</title>
-<!--
-  CICADA 6845 — TEST 04 (FÁZA 2, variant A).
-  cesta A (pravá): Vigenère Autokey → "Kto hlada odpovede, najde len dalsie OTAZKY." → otazky; fragmenty 4.1–4.4.
-  cesta B (pasca): Vigenère Autokey → "Co sa zda pravdou, moze byt len dverami do TMY." → tmy; 2-znakový mini kúsok.
-  Šifrovanie overené na cryptii.com 7.10.2026 (kľúč cryptiypts, Autokey, Ignore case, Include).
-  Odpoveď = POSLEDNÉ slovo dekódovaného textu (cryptii pri Ignore case stráca CAPS).
-  CISLO_FAZY = 4.
--->
+<!-- CICADA 6845 — TEST 04. -->
 <style>
   body { background:#0a0a0a; color:#c8c8c8; font-family:Georgia,serif;
          max-width:640px; margin:8vh auto; padding:0 24px; line-height:1.7; }
@@ -50,7 +43,7 @@
   Len jedna cesta je pravá.
 </div>
 
-<!-- ================= CESTA A (pravá) ================= -->
+<!-- ================= CESTA A ================= -->
 <div class="cesta">
 <h2>CESTA A — prvý text</h2>
 <div class="hadanka">
@@ -62,7 +55,7 @@
 <div class="vysledok" id="vyslA"></div>
 </div>
 
-<!-- ================= CESTA B (pasca) ================= -->
+<!-- ================= CESTA B ================= -->
 <div class="cesta">
 <h2>CESTA B — druhý text</h2>
 <div class="hadanka">
@@ -81,7 +74,7 @@
 </p>
 
 <script>
-// SCHVÁLENÉ 7.10.2026 — hashe platia pre slová otazky / tmy.
+// SCHVÁLENÉ 7.10.2026 — variant A.
 // CISLO_FAZY = 4 sa NESMIE meniť (je súčasťou hashov).
 const CISLO_FAZY = 4;
 const REALNA = "A";
@@ -115,7 +108,7 @@ async function over(cesta){
   }
   if(cesta === REALNA){
     const frags = [];
-    for(let j=1;j<=4;j++) frags.push((await sha256hex(n + "|" + j)).slice(0,8));
+    for(let j=1;j<=3;j++) frags.push((await sha256hex(n + "|" + j)).slice(0,8));
     let html = "Fragmenty testu 04:<br>";
     frags.forEach((f,j)=>{
       html += '<span class="fragment">4.' + (j+1) + ": " + f + "</span><br>";
